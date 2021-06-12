@@ -1,6 +1,6 @@
 package com.rosaecrucis.community.provider;
 
-import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Component;
 
@@ -26,23 +26,24 @@ public class OAuthProvider {
 			String string = response.body().string();
 			String token = string.split("&")[0].split("=")[1];
 			return token;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	public GithubUserDTO getGithutUser(String accessToken) {
 		String url = "https://api.github.com/user";
-		OkHttpClient client = new OkHttpClient();
+		OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(200000, TimeUnit.MILLISECONDS)
+				.readTimeout(200000, TimeUnit.MILLISECONDS).build();
 		Request request = new Request.Builder().url(url).header("Authorization", "token " + accessToken).build();
 		try (Response response = client.newCall(request).execute()) {
 			String string = response.body().string();
 			GithubUserDTO githubUser = JSON.parseObject(string, GithubUserDTO.class);
 			return githubUser;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 }

@@ -1,5 +1,7 @@
 package com.rosaecrucis.community.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,8 @@ public class OAuthController {
 	private String clientSecret;
 
 	@GetMapping("/loginOAuth")
-	public String loginOAuth(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state) {
+	public String loginOAuth(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state,
+			HttpServletRequest request) {
 		AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
 		accessTokenDTO.setCode(code);
 		accessTokenDTO.setRedirect_uri(redirectURI);
@@ -33,8 +36,15 @@ public class OAuthController {
 		System.out.println("Logging...");
 		String token = provider.getAccessToken(accessTokenDTO);
 		System.out.println("Get Token:" + token);
-		GithubUserDTO githutUser = provider.getGithutUser(token);
-		System.out.println("Get User:" + JSON.toJSONString(githutUser));
-		return "index";
+		GithubUserDTO githubUser = provider.getGithutUser(token);
+		System.out.println("Get User:" + JSON.toJSONString(githubUser));
+		if (githubUser != null) {
+			// 登录成功
+			request.getSession().setAttribute("user", githubUser);
+			return "redirect:/";
+		} else {
+			// 登录失败
+			return "redirect:/";
+		}
 	}
 }
