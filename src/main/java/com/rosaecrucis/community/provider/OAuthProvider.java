@@ -19,7 +19,8 @@ public class OAuthProvider {
 	public String getAccessToken(AccessTokenDTO accessTokenDTO) {
 		String url = "https://github.com/login/oauth/access_token";
 		MediaType mediaType = MediaType.get("application/json; charset=utf-8");
-		OkHttpClient client = new OkHttpClient();
+		OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(60000, TimeUnit.MILLISECONDS)
+				.readTimeout(60000, TimeUnit.MILLISECONDS).build();
 		RequestBody body = RequestBody.create(mediaType, JSON.toJSONString(accessTokenDTO));
 		Request request = new Request.Builder().url(url).post(body).build();
 		try (Response response = client.newCall(request).execute()) {
@@ -33,9 +34,12 @@ public class OAuthProvider {
 	}
 
 	public GithubUserDTO getGithutUser(String accessToken) {
+		if (accessToken == null) {
+			return null;
+		}
 		String url = "https://api.github.com/user";
-		OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(200000, TimeUnit.MILLISECONDS)
-				.readTimeout(200000, TimeUnit.MILLISECONDS).build();
+		OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(60000, TimeUnit.MILLISECONDS)
+				.readTimeout(60000, TimeUnit.MILLISECONDS).build();
 		Request request = new Request.Builder().url(url).header("Authorization", "token " + accessToken).build();
 		try (Response response = client.newCall(request).execute()) {
 			String string = response.body().string();
