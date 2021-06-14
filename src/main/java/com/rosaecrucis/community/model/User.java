@@ -1,5 +1,6 @@
 package com.rosaecrucis.community.model;
 
+// 数据模型，和数据库表中每一列的属性相对应
 public class User {
 	private Integer id;
 	private String name;

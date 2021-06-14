@@ -1,5 +1,6 @@
 package com.rosaecrucis.community.dto;
 
+// token传输对象，用做post的body查询用户信息
 public class AccessTokenDTO {
 	private String client_id;
 	private String client_secret;
