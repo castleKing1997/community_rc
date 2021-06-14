@@ -1,5 +1,6 @@
 package com.rosaecrucis.community.dto;
 
+// 用户信息传输对象，用于设置session里的用户信息
 public class GithubUserDTO {
 
 	private String name;
