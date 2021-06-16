@@ -2,7 +2,7 @@
 
 ### 1 简介
 
-在之前的两个版本（[`0.0.0`](https://github.com/castleKing1997/community_rc/tree/0.0.0)、[`0.0.1`](https://github.com/castleKing1997/community_rc/tree/0.0.1)）版本中，我们基本完成了用户认证登录的功能，现在我们来完成第一个正式功能：文章发布。为此，需要实现的功能有：
+在之前的两个版本（[`0.0.0`](https://github.com/castleKing1997/community_rc/tree/0.0.0)、[`0.1.0`](https://github.com/castleKing1997/community_rc/tree/0.1.0)）版本中，我们基本完成了用户认证登录的功能，现在我们来完成第一个正式功能：文章发布。为此，需要实现的功能有：
 
 - 编写一个发布页面
 
