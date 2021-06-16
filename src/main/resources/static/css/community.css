@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+body{
+	background-color: #e3f1d6;
+}
+.main{
+    background-color: white;
+    margin: 30px;
+}
+.btn-publish{
+	float:right;
+	margin-bottom:15px;
+}
