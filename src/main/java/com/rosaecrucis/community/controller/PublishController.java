@@ -29,9 +29,11 @@ public class PublishController {
 	@PostMapping("/publish")
 	public String doPublish(@RequestParam("title") String title, @RequestParam("description") String description,
 			@RequestParam("tag") String tag, HttpServletRequest request, Model model) {
+		// 将变量保存到当前浏览器页面中，如果发生跳转会清空
 		model.addAttribute("title", title);
 		model.addAttribute("description", description);
 		model.addAttribute("tag", tag);
+		// 判断是否填写合法
 		if (title == "" || title == null) {
 			model.addAttribute("error", "标题不能为空");
 			return "publish";
@@ -50,7 +52,7 @@ public class PublishController {
 			model.addAttribute("error", "用户未登录");
 			return "publish";
 		}
-
+		// 将问题插入数据库
 		Question question = new Question();
 		question.setTitle(title);
 		question.setDescription(description);
