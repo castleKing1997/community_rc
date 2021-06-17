@@ -59,6 +59,8 @@ public class OAuthController {
 			user.setAccountId(String.valueOf(githubUser.getId()));
 			user.setGmtCreate(System.currentTimeMillis());
 			user.setGmtModified(user.getGmtCreate());
+			user.setAvatarUrl(githubUser.getAvatarUrl());
+			user.setBio(githubUser.getBio());
 			userMapper.insertUser(user);
 			// 将token放到response的cookie中，返回给用户，用户收到后会把token保存在浏览器中
 			token = user.getToken();

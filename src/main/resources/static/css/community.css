@@ -11,3 +11,12 @@ body{
 	float:right;
 	margin-bottom:15px;
 }
+.img-index-list{
+	width: 64px;
+    height: 64px;
+}
+.text-desc{
+	font-size: 10px;
+	font-weight: norm;
+	color: #999
+}

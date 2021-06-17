@@ -5,6 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/community.css">
 <script src="js/bootstrap.min.js" type="application/javascript"></script>
 <title>Rosae Crucis</title>
 </head>
@@ -19,7 +20,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Rosae Crucis</a>
+      <a class="navbar-brand" href="/">Rosae Crucis</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,5 +45,38 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<div class="container-fluid main">
+
+  <div class="row">
+  	<div class="col-lg-9 col-md-12 col-sm-12">
+  		<h2><span class="glyphicon glyphicon-list" aria-hidden="true" style="margin-right: 10px;"></span>发现</h2>
+  		<br style="height:2px, color:black">
+		<ul class="list-group" th:each="question: ${questions}">
+		  <li class="list-group-item">
+	 		<div class="media">
+			  <div class="media-left">
+			    <a href="#">
+			      <img class="media-object img-rounded img-index-list" th:src="${question.user.avatarUrl}" data-holder-rendered="true">
+			    </a>
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading" style="font-weight: bold;" th:text="${question.title}"></h4>
+				   	<p th:text="${question.description}"></p>
+                    <span class="text-desc">
+                    	<span th:text="${question.commentCount}"></span> 个回复 • 
+                    	<span th:text="${question.viewCount}"></span> 次浏览 • 
+                        <span th:text="${question.likeCount}"></span> 个点赞 •
+                        <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
+                    </span>
+			  </div>
+			</div>
+		  </li>
+		</ul>
+  	</div>
+  	<div class="col-lg-3 col-md-12 col-sm-12">
+  		<h3>热门话题</h3>
+  	</div>
+  </div>
+</div>
 </body>
 </html>

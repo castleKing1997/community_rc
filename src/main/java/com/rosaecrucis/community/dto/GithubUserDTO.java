@@ -6,6 +6,7 @@ public class GithubUserDTO {
 	private String name;
 	private long id;
 	private String bio;
+	private String avatar_url;
 
 	public String getName() {
 		return name;
@@ -29,5 +30,13 @@ public class GithubUserDTO {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public String getAvatarUrl() {
+		return avatar_url;
+	}
+
+	public void setAvatarUrl(String avatar_url) {
+		this.avatar_url = avatar_url;
 	}
 }
